@@ -52,11 +52,24 @@ public class MovieRepository {
     }
 
     public Movie findMovie(String movie){
+//        for(String moviename : movieMap.keySet()){
+//            System.out.print(moviename+" ");
+//        }
         return movieMap.get(movie);
     }
 
     public Director findDirector(String director){
         return directorMap.get(director);
+    }
+
+    public String findDirectorByMovieName(String MovieName){
+        for(String director_name : directorMovieMapping.keySet()){
+            List<String> list = directorMovieMapping.get(director_name);
+            for(int i=0;i<list.size();i++){
+                if(MovieName.equals(list.get(i)))
+                    return director_name;
+            }
+        }return null;
     }
 
     public List<String> findMoviesFromDirector(String director){
